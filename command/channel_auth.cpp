@@ -10,6 +10,7 @@ namespace command
 std::vector<uint8_t> GetChannelCapabilities(
         const std::vector<uint8_t>& inPayload, const message::Handler& handler)
 {
+	std::cerr << "[open-bmc-log]-------------------7\n";
     std::vector<uint8_t> outPayload(sizeof(GetChannelCapabilitiesResp));
     auto response = reinterpret_cast<GetChannelCapabilitiesResp*>
                     (outPayload.data());

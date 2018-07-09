@@ -28,22 +28,26 @@ static int udp623Handler(sd_event_source* es, int fd, uint32_t revents,
 
 
         std::unique_ptr<message::Message> inMessage;
-
+        std::cerr << "[open-bmc-log]-------------------1\n";
         // Read the incoming IPMI packet
         inMessage = msgHandler.receive();
         if (inMessage == nullptr)
         {
+			std::cerr << "[open-bmc-log]-------------------2\n";
             return 0;
         }
 
         // Execute the Command
+		std::cerr << "[open-bmc-log]-------------------3\n";
         auto outMessage = msgHandler.executeCommand(*(inMessage.get()));
         if (outMessage == nullptr)
         {
+			std::cerr << "[open-bmc-log]-------------------4\n";
             return 0;
         }
 
         // Send the response IPMI Message
+		std::cerr << "[open-bmc-log]-------------------5\n";
         msgHandler.send(*(outMessage.get()));
     }
     catch (std::exception& e)
